@@ -9,6 +9,6 @@
 ### Project Description:
 
 ### Launch Codes:
-* Clone :
+* Clone seam_less__mandersen10_achin10_elee11_soh11:
   `git clone https://github.com/maddyandersen/seam_less.git`
 
