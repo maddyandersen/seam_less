@@ -1,2 +1,7 @@
 # seam_less
-SoftDev Project 1
+
+### Roster:
+* Project Manager: Maddy Andersen (mandersen10)
+* Amelia Chin (achin10)
+* Erin Lee (elee11)
+* Stella Oh (soh11)
