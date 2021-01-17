@@ -1,4 +1,4 @@
-# seam_less
+# Team Seam-less
 
 ### Roster:
 * Project Manager: Maddy Andersen (mandersen10)
