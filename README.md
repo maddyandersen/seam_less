@@ -9,6 +9,6 @@
 ### Project Description:
 
 ### Launch Codes:
-* Clone team_kocy__wyin10__ychan10_lkronman10_soh11:
+* Clone :
   `git clone https://github.com/maddyandersen/seam_less.git`
 
