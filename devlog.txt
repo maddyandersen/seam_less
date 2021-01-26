@@ -1,0 +1,79 @@
+DEVLOG (Team Seam_less)
+
+Instructions:
+Devlog allows any group member at any time to see the current state of the project.
+PM will make sure devlog is being maintained, but will not make all entries.
+The devlog should be a plain text file, stored in the specified location.
+When any team member stops working and pushes changes to github, they should update the devlog explaining what changes have been made. Include errors/bugs discovered (or created).
+Separate devlog entries with a newline.
+Most recent entry at the bottom.
+Each entry should begin with the following format: firstL -- TIMESTAMP\n ( e.g.: topherM -- 1999-12-31 23:59 )
+
+> maddyA -- 2021-01-17 18:05
+- Installed apache on all members' droplets. We used this article (up to step 4):
+  https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-ubuntu-20-04
+  We also followed steps 3+4 on this tutorial to give our user admin (sudo) privileges
+  and install a firewall: https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-20-04
+- We also decided to use Team lach_on's p0 and bootstrap (as opposed to foundation)
+
+> maddyA -- 2021-01-20 16:10
+- Deployed myfoistapp on Erin and Maddy's droplets. As per Karl's suggestion, we added
+  sys.path.append("/var/www/FlaskApp/FlaskApp/") to our .wsgi file. We also had to
+  run sudo apt-get install libapache2-mod-wsgi-py3. Otherwise, we followed this tutorial:
+  https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps
+- To restart the server, use sudo service apache2 restart
+- Erin and I both got permission errors when trying to nano our error.log files.
+  We are able to view them when we cat them (cat /var/log/apache2/error.log).
+- Though we are getting a few errors with session, we hosted p0 on Erin's droplet.
+  The app runs well locally, and we are only getting the errors when accessing the
+  version hosted on the droplet.
+- Erin played around with permissions, and we discovered www-data (which we later
+  learned is the apache user). We used sudo chown www-data ., but we probably should
+  have been more selective with our permissions. Something to update on Erin's and to
+  keep in mind while working on mine, Amelia's, and Stella's.
+- Whenever we reference the blog file in either our __init__.py or our db_builder.py
+  (db = sqlite3.connect("blog"), etc.), we have to include blog's location within
+  the file structure (/var/www/myapp/myapp/blog)
+- Erin's droplet's IP address (for future reference) is 165.22.181.241
+
+>maddyA -- 2021-01-23 23:37
+- I learned that instead of manually copying and pasting every single file from our
+  p0 into the file system on our droplets, we can use git clone [https of p0 repo].
+  I tried this out, and it works really well!
+
+>maddyA -- 2021-01-25 22:42
+- Today was the day we'd all been waiting for: the day we worked with bootstrap!
+- Erin was able to solve our session errors by adding the last line here:
+  @app.route(("/show_existing_blog"), methods=["POST", "GET"])
+    def show_existing_blog():
+      if session["visitor_id"] != session["user_id"]:
+        access = False
+      else:
+        access = True
+      if "id" in request.form:
+        blog_id=request.form["id"]
+        session["blog_id"] = blog_id
+- I demo-ed Team lach_on's p0 so Amelia and Stella could become more familiar with
+  it, and then Ameila drove. We looked through the bootstrap website and started
+  working on the login page (adding bootstrap to the form and the buttons). We also
+  started a style.css sheet for additional css. We played around with the font, the
+  background color, and the color of the buttons. We also added a footer with our
+  team name and roster to every page (instead of having it at the top of the login
+  page only), and also added a container to every page to help make our site more
+  visually appealing.
+- After working on the login page, we split up and each tackled a 2-3 html files.
+    Erin: profile, blog, masterlist
+    Maddy: register, error
+    Stella: create blog, edit blog
+    Amelia: create entry, edit entry
+  Splitting up the files was super productive, and we were able to finish them all
+  up in a little under an hour.
+- Team lach_on had both inline and internal css for their tables in the blog, profile,
+  and masterlist files, but we moved this to our external style sheet.
+- We are having trouble downloading files from Rocket.Chat. There is a ton of excess
+  code in both the head and the body, but all of our intended code remains intact.
+  Rocket.Chat may be adding in these extra lines, but we aren't sure why. Might be
+  worth mentioning this in class tomorrow.
+- Next up:
+    - host version of p0 with css
+    - make sure all devos are able to host p0 on their droplets
