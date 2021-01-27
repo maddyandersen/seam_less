@@ -12,6 +12,8 @@ from db_builder import create_user, authenticate_user, create_blog, create_entry
 
 app = Flask(__name__)
 app.secret_key = os.urandom(32) #set up session secret key
+#to run in apache, the db file needs the full path of the file, but if you are running locally it should just be "blog"
+DB_FILE = "/var/www/www/seam_less/seam_less/blog"
 
 @app.route("/", methods=['POST', 'GET'])
 def home():
@@ -34,7 +36,7 @@ def user():
     last_name=request.form["last_name"]
     username=request.form["username"]
     password=request.form["password"]
-    db = sqlite3.connect("blog")
+    db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     c.execute("SELECT * FROM users WHERE username = '" + username + "'") #check to see whether user already exists
     check = c.fetchall()
@@ -101,7 +103,7 @@ def show_existing_blog():
         session["blog_id"] = blog_id
     else:
         blog_id = session["blog_id"]
-    db = sqlite3.connect("blog")
+    db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     c.execute("SELECT name, description FROM blogs WHERE blog_id=" + blog_id)
     data = c.fetchone()
@@ -125,7 +127,7 @@ def entry_update():
 @app.route(("/edit_entry"), methods=["POST", "GET"])
 def entry_edit():
     entry_id=request.form["id"]
-    db = sqlite3.connect("blog")
+    db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     c.execute("SELECT title, content FROM entries WHERE entry_id=" + entry_id)
     data_entries = c.fetchone()
@@ -147,7 +149,7 @@ def all():
         user_id=request.form["id"]
     else:
         user_id = session["user_id"]
-    db = sqlite3.connect("blog")
+    db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     c.execute("SELECT user_id, username, first_name, last_name FROM users WHERE user_id !=" + str(user_id))
     data = c.fetchone()
@@ -157,7 +159,7 @@ def all():
 def view_blogs():
     if "id" in request.form:
         session["visitor_id"] = request.form["id"]
-    db = sqlite3.connect("blog")
+    db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     c.execute("SELECT username, first_name, last_name FROM users WHERE user_id =" + str(session["visitor_id"]))
     data = c.fetchone()
@@ -177,7 +179,7 @@ def logout():
 def authenticate():
     username=request.form["username"]
     password=request.form["password"]
-    db = sqlite3.connect("blog")
+    db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     c.execute("SELECT user_id, first_name, last_name FROM users WHERE username= ? AND password = ? ", (username, password))
     data = c.fetchall()
