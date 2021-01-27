@@ -54,14 +54,14 @@ Each entry should begin with the following format: firstL -- TIMESTAMP\n ( e.g.:
         blog_id=request.form["id"]
         session["blog_id"] = blog_id
 - I demo-ed Team lach_on's p0 so Amelia and Stella could become more familiar with
-  it, and then Ameila drove. We looked through the bootstrap website and started
+  it, and then Amelia drove. We looked through the bootstrap website and started
   working on the login page (adding bootstrap to the form and the buttons). We also
   started a style.css sheet for additional css. We played around with the font, the
   background color, and the color of the buttons. We also added a footer with our
   team name and roster to every page (instead of having it at the top of the login
   page only), and also added a container to every page to help make our site more
   visually appealing.
-- After working on the login page, we split up and each tackled a 2-3 html files.
+- After working on the login page, we split up and each tackled 2-3 html files.
     Erin: profile, blog, masterlist
     Maddy: register, error
     Stella: create blog, edit blog
