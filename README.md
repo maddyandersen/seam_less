@@ -15,7 +15,7 @@ A blog site where registered users can:
 
 ### Launch Codes:
 * Visit: http://165.22.181.241/
-OR
+  OR
 * Clone this repository:
   `git clone https://github.com/maddyandersen/seam_less.git`
 * Install the required modules:
