@@ -13,7 +13,7 @@ from db_builder import create_user, authenticate_user, create_blog, create_entry
 app = Flask(__name__)
 app.secret_key = os.urandom(32) #set up session secret key
 #to run in apache, the db file needs the full path of the file, but if you are running locally it should just be "blog"
-DB_FILE = "/var/www/www/seam_less/seam_less/blog"
+DB_FILE = "/var/www/seam_less/seam_less/blog"
 
 @app.route("/", methods=['POST', 'GET'])
 def home():

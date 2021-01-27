@@ -8,7 +8,7 @@ import random
 
 #open db if exists, otherwise create
 #to run in apache, the db file needs the full path of the file, but if you are running locally it should just be "blog"
-DB_FILE = "/var/www/www/seam_less/seam_less/blog"
+DB_FILE = "/var/www/seam_less/seam_less/blog"
 db = sqlite3.connect(DB_FILE)
 
 c = db.cursor() #facilitate db ops
