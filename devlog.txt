@@ -78,5 +78,31 @@ Each entry should begin with the following format: firstL -- TIMESTAMP\n ( e.g.:
     - host version of p0 with css
     - make sure all devos are able to host p0 on their droplets
     
-> stellaO -- 2021-01-26 9:20
+> stellaO -- 2021-01-26 21:20
 - Updated README file to account for project description and launching code
+
+> ameliaC -- 2021-01-26 21:36
+- Working off of Lach On's design.pdf, separated their P0 content from SeamLess's new P1 content
+- Added task breakdown for adding CSS and Bootstrap to the HTML templates (see maddyA's 2021-01-25 22:42 entry for who did what)
+- Added a new section outlining the CSS and Bootstrap elements we included
+    - fonts: 
+        - body: Lato
+        - h1: Lobster Two, bold
+    - colors: 
+        - background, footer text: #BCD6B4 (light green)
+        - footer background, main text: #005C59 (teal)
+        - buttons: #005C59 (teal), #67839E (greyish blue), #9E0E1D (fire engine red)
+        - button text: #FFFFFF (white)
+    - Bootstrap:
+        - forms with floating labels 
+        - mb-3 class instead of breaks
+        - btn class for all our buttons
+        - tables with striped and hoverable rows
+        - container class around all content except footers
+    - external CSS stylesheet:
+        - footer class styles footer containing our team name and roster
+        - input class gives all forms width of 50%
+        - table class gives all tables width of 100%
+        - top-btn, btn, red classes color different buttons
+        - btn-set class aligns buttons next to each other
+
