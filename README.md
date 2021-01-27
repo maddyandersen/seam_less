@@ -14,16 +14,15 @@ A blog site where registered users can:
 * View the blogs and entries of other users
 
 ### Launch Codes:
-* Visit: http://165.22.181.241/
-  
+* Visit: http://157.230.230.75/
+
   OR
 
 * Clone this repository:
   `git clone https://github.com/maddyandersen/seam_less.git`
 * Install the required modules:
   `pip install -r requirements.txt`
-* Go to app directory: 
+* Go to app directory:
   `cd app`
 * Run:
   `python3 __init__.py`
-

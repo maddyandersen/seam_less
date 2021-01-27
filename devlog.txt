@@ -77,7 +77,7 @@ Each entry should begin with the following format: firstL -- TIMESTAMP\n ( e.g.:
 - Next up:
     - host version of p0 with css
     - make sure all devos are able to host p0 on their droplets
-    
+
 > stellaO -- 2021-01-26 21:20
 - Updated README file to account for project description and launching code
 
@@ -85,16 +85,16 @@ Each entry should begin with the following format: firstL -- TIMESTAMP\n ( e.g.:
 - Working off of Lach On's design.pdf, separated their P0 content from SeamLess's new P1 content
 - Added task breakdown for adding CSS and Bootstrap to the HTML templates (see maddyA's 2021-01-25 22:42 entry for who did what)
 - Added a new section outlining the CSS and Bootstrap elements we included
-    - fonts: 
+    - fonts:
         - body: Lato
         - h1: Lobster Two, bold
-    - colors: 
+    - colors:
         - background, footer text: #BCD6B4 (light green)
         - footer background, main text: #005C59 (teal)
         - buttons: #005C59 (teal), #67839E (greyish blue), #9E0E1D (fire engine red)
         - button text: #FFFFFF (white)
     - Bootstrap:
-        - forms with floating labels 
+        - forms with floating labels
         - mb-3 class instead of breaks
         - btn class for all our buttons
         - tables with striped and hoverable rows
@@ -105,13 +105,35 @@ Each entry should begin with the following format: firstL -- TIMESTAMP\n ( e.g.:
         - table class gives all tables width of 100%
         - top-btn, btn, red classes color different buttons
         - btn-set class aligns buttons next to each other
+
 > erinL -- 2021-01-26 21:51
-- Git cloned the seam_less repo on the droplet and made necessary configuration changes. 
+- Git cloned the seam_less repo on the droplet and made necessary configuration changes.
 The droplet successfully loaded our css-ified app, but we ran into many issues with our cookies for some reason.
-the error: [Wed Jan 27 02:43:25.237920 2021] [wsgi:error] [pid 1130119:tid 140596853319424] 
+the error: [Wed Jan 27 02:43:25.237920 2021] [wsgi:error] [pid 1130119:tid 140596853319424]
 [client 66.65.163.58:55536] KeyError: 'entry_id', referer: http://165.22.181.241/edit_entry
-- we also saw this break for blog_id, user_id, visitor_id, etc. but was very sporadic in terms 
-of when it would break. Sometimes editing a blog would work and then other times it would not. 
+- we also saw this break for blog_id, user_id, visitor_id, etc. but was very sporadic in terms
+of when it would break. Sometimes editing a blog would work and then other times it would not.
 It usually didn't work when we tried to edit or create an entry, and sometimes when we tried to create a blog.
-- we tried to tweak things here and there and make minor changes to see if they would do anything, 
+- we tried to tweak things here and there and make minor changes to see if they would do anything,
 but we haven't been able to solve this bug, though everything works perfectly locally.
+
+> maddyA -- 2021-01-27 00:48
+- I was able to host p0 on my droplet (157.230.230.75) without any of the same 
+  session errors we've been getting on Erin's. I used this article:
+  https://www.digitalocean.com/community/questions/permissions-on-var-www-html-for-uploading-web-site-files-via-sftp
+
+  1. Change the directory owner and group:
+  sudo chown www-data:www-data /var/www/seam_less/seam_less
+
+  2. Allow the group to write to the directory with appropriate permissions:
+  sudo chmod -R 775 /var/www/seam_less/seam_less
+
+  3. Add user to the www-data group:
+  sudo usermod -a -G www-data maddy
+
+  4. logout (exit) and login again
+
+  5. Check by running ls -al blog within /var/www/seam_less/seam_less. This is what I have:
+  -rwxrwxr-x 1 www-data www-data 24576 Jan 27 04:57 blog
+
+  6. Restart apache
