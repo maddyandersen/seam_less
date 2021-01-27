@@ -105,4 +105,13 @@ Each entry should begin with the following format: firstL -- TIMESTAMP\n ( e.g.:
         - table class gives all tables width of 100%
         - top-btn, btn, red classes color different buttons
         - btn-set class aligns buttons next to each other
-
+> erinL -- 2021-01-26 21:51
+- Git cloned the seam_less repo on the droplet and made necessary configuration changes. 
+The droplet successfully loaded our css-ified app, but we ran into many issues with our cookies for some reason.
+the error: [Wed Jan 27 02:43:25.237920 2021] [wsgi:error] [pid 1130119:tid 140596853319424] 
+[client 66.65.163.58:55536] KeyError: 'entry_id', referer: http://165.22.181.241/edit_entry
+- we also saw this break for blog_id, user_id, visitor_id, etc. but was very sporadic in terms 
+of when it would break. Sometimes editing a blog would work and then other times it would not. 
+It usually didn't work when we tried to edit or create an entry, and sometimes when we tried to create a blog.
+- we tried to tweak things here and there and make minor changes to see if they would do anything, 
+but we haven't been able to solve this bug, though everything works perfectly locally.
