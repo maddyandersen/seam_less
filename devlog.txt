@@ -36,12 +36,12 @@ Each entry should begin with the following format: firstL -- TIMESTAMP\n ( e.g.:
   the file structure (/var/www/myapp/myapp/blog)
 - Erin's droplet's IP address (for future reference) is 165.22.181.241
 
->maddyA -- 2021-01-23 23:37
+> maddyA -- 2021-01-23 23:37
 - I learned that instead of manually copying and pasting every single file from our
   p0 into the file system on our droplets, we can use git clone [https of p0 repo].
   I tried this out, and it works really well!
 
->maddyA -- 2021-01-25 22:42
+> maddyA -- 2021-01-25 22:42
 - Today was the day we'd all been waiting for: the day we worked with bootstrap!
 - Erin was able to solve our session errors by adding the last line here:
   @app.route(("/show_existing_blog"), methods=["POST", "GET"])
@@ -77,3 +77,6 @@ Each entry should begin with the following format: firstL -- TIMESTAMP\n ( e.g.:
 - Next up:
     - host version of p0 with css
     - make sure all devos are able to host p0 on their droplets
+    
+> stellaO -- 2021-01-26 9:20
+- Updated README file to account for project description and launching code
