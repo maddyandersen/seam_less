@@ -118,12 +118,12 @@ It usually didn't work when we tried to edit or create an entry, and sometimes w
 but we haven't been able to solve this bug, though everything works perfectly locally.
 
 > maddyA -- 2021-01-27 00:48
-- I was able to host p0 on my droplet (157.230.230.75) without any of the same 
+- I was able to host p0 on my droplet (157.230.230.75) without any of the same
   session errors we've been getting on Erin's. I used this article:
   https://www.digitalocean.com/community/questions/permissions-on-var-www-html-for-uploading-web-site-files-via-sftp
 
   1. Change the directory owner and group:
-  sudo chown www-data:www-data /var/www/seam_less/seam_less
+  sudo chown -R www-data:www-data /var/www/seam_less/seam_less
 
   2. Allow the group to write to the directory with appropriate permissions:
   sudo chmod -R 775 /var/www/seam_less/seam_less
