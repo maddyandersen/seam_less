@@ -179,7 +179,7 @@ but we haven't been able to solve this bug, though everything works perfectly lo
       -rwxrwxr-x 1 www-data www-data 24576 Jan 27 04:57 blog
   20. Restart apache (sudo service apache2 restart)
 
-> AmeliaC -- 2021-01-27 21:04
+> ameliaC -- 2021-01-27 21:04
 - We worked together on hosting p0 on my droplet (165.22.189.233) based on what Maddy did last 
   night. My earlier try was unsuccessful, so I deleted the files and restarted from the beginning.
 - I added the specific commands that I used to Maddy's tutorial in the last entry to make it 
