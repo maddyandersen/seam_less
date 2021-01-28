@@ -121,19 +121,62 @@ but we haven't been able to solve this bug, though everything works perfectly lo
 - I was able to host p0 on my droplet (157.230.230.75) without any of the same
   session errors we've been getting on Erin's. I used this article:
   https://www.digitalocean.com/community/questions/permissions-on-var-www-html-for-uploading-web-site-files-via-sftp
+  
+  1. Make sure you have Flask, a virtual environment, and pip3 installed. Instructions can be found in the article above.
+  2. After logging in to your user, cd /var/www/
+  3. sudo a2enmod wsgi
+  4. sudo git clone https://github.com/maddyandersen/seam_less.git
+  5. cd /etc/apache2/sites-available/
+  6. sudo nano /etc/apache2/sites-available/seam_less.conf
+     Inside the file, write:
+        <VirtualHost *:80>
+		                 ServerName 157.230.230.75
+		                 ServerAdmin maddy@157.230.230.75
+		                 WSGIScriptAlias / /var/www/seam_less/seam_less.wsgi
+		                 <Directory /var/www/seam_less/seam_less/>
+			                       Order allow,deny
+			                       Allow from all
+		                 </Directory>
+		                 Alias /static /var/www/seam_less/seam_less/static
+		                 <Directory /var/www/seam_less/seam_less/static/>
+			                       Order allow,deny
+			                       Allow from all
+		                 </Directory>
+		                 ErrorLog ${APACHE_LOG_DIR}/error.log
+		                 LogLevel warn
+		                 CustomLog ${APACHE_LOG_DIR}/access.log combined
+        </VirtualHost>
+     Save and exit.
+  7. sudo a2ensite seam_less
+  8. systemctl reload apache2 
+  9. We ran sudo a2ensite seam_less again to be sure our site was enabled
+  10. cd /var/www/seam_less
+  11. sudo nano seam_less.wsgi
+      Inside the file, write:
+        #!/usr/bin/python3
+        import sys
+        import logging
+        logging.basicConfig(stream=sys.stderr)
+        sys.path.insert(0,"/var/www/seam_less/")
+        sys.path.append("/var/www/seam_less/seam_less/")
 
-  1. Change the directory owner and group:
-  sudo chown -R www-data:www-data /var/www/seam_less/seam_less
+        from seam_less import app as application
+        application.secret_key = 'Add your secret key'
+      Save and exit. 
+  12. sudo apt-get install libapache2-mod-wsgi-py3
+  13. sudo service apache2 restart
+  14. cd seam_less/
+  15. Change the directory owner and group:
+      sudo chown -R www-data:www-data /var/www/seam_less/seam_less
+  16. Allow the group to write to the directory with appropriate permissions:
+      sudo chmod -R 775 /var/www/seam_less/seam_less
+  17. Add user to the www-data group:
+      sudo usermod -a -G www-data maddy
+  18. logout (exit) and login again
+  19. Check by running ls -al blog within /var/www/seam_less/seam_less. This is what I have:
+      -rwxrwxr-x 1 www-data www-data 24576 Jan 27 04:57 blog
+  20. Restart apache (sudo service apache2 restart)
 
-  2. Allow the group to write to the directory with appropriate permissions:
-  sudo chmod -R 775 /var/www/seam_less/seam_less
-
-  3. Add user to the www-data group:
-  sudo usermod -a -G www-data maddy
-
-  4. logout (exit) and login again
-
-  5. Check by running ls -al blog within /var/www/seam_less/seam_less. This is what I have:
-  -rwxrwxr-x 1 www-data www-data 24576 Jan 27 04:57 blog
-
-  6. Restart apache
+> AmeliaC -- 2021-01-27 21:04
+- We worked together on hosting p0 on my droplet (165.22.189.233) based on what Maddy did last night. My earlier try was unsuccessful, so I deleted the files and restarted from the beginning.
+- I added the specific commands that I used to Maddy's tutorial in the last entry to make it more specific and easier to recreate. Steps 1-11 are basically the same as the steps in the article, but I thought it would be helpful to document commands specific to our project that we tested and proved to work. (Also, maybe I should have started at step 0, but I realized that after I typed all those numbers out and I don't want to do it again.)
