@@ -83,7 +83,7 @@ Each entry should begin with the following format: firstL -- TIMESTAMP\n ( e.g.:
 
 > ameliaC -- 2021-01-26 21:36
 - Working off of Lach On's design.pdf, separated their P0 content from SeamLess's new P1 content
-- Added task breakdown for adding CSS and Bootstrap to the HTML templates 
+- Added task breakdown for adding CSS and Bootstrap to the HTML templates
   (see maddyA's 2021-01-25 22:42 entry for who did what)
 - Added a new section outlining the CSS and Bootstrap elements we included
     - fonts:
@@ -122,8 +122,8 @@ but we haven't been able to solve this bug, though everything works perfectly lo
 - I was able to host p0 on my droplet (157.230.230.75) without any of the same
   session errors we've been getting on Erin's. I used this article:
   https://www.digitalocean.com/community/questions/permissions-on-var-www-html-for-uploading-web-site-files-via-sftp
-  
-  1. Make sure you have Flask, a virtual environment, and pip3 installed. 
+
+  1. Make sure you have Flask, a virtual environment, and pip3 installed.
      Instructions can be found in the article above.
   2. After logging in to your user, cd /var/www/
   3. sudo a2enmod wsgi
@@ -150,7 +150,7 @@ but we haven't been able to solve this bug, though everything works perfectly lo
         </VirtualHost>
      Save and exit.
   7. sudo a2ensite seam_less
-  8. systemctl reload apache2 
+  8. systemctl reload apache2
   9. We ran sudo a2ensite seam_less again to be sure our site was enabled
   10. cd /var/www/seam_less
   11. sudo nano seam_less.wsgi
@@ -164,7 +164,7 @@ but we haven't been able to solve this bug, though everything works perfectly lo
 
         from seam_less import app as application
         application.secret_key = 'Add your secret key'
-      Save and exit. 
+      Save and exit.
   12. sudo apt-get install libapache2-mod-wsgi-py3
   13. sudo service apache2 restart
   14. cd seam_less/
@@ -180,10 +180,13 @@ but we haven't been able to solve this bug, though everything works perfectly lo
   20. Restart apache (sudo service apache2 restart)
 
 > ameliaC -- 2021-01-27 21:04
-- We worked together on hosting p0 on my droplet (165.22.189.233) based on what Maddy did last 
+- We worked together on hosting p0 on my droplet (165.22.189.233) based on what Maddy did last
   night. My earlier try was unsuccessful, so I deleted the files and restarted from the beginning.
-- I added the specific commands that I used to Maddy's tutorial in the last entry to make it 
-  more specific and easier to recreate. Steps 1-11 are basically the same as the steps in the 
-  article, but I thought it would be helpful to document commands specific to our project that 
-  we tested and proved to work. (Also, maybe I should have started at step 0, but I realized 
-  that after I typed all those numbers out and I don't want to do it again.)
+- I added the specific commands that I used to Maddy's tutorial in the last entry to make it
+  more specific and easier to recreate. Steps 1-11 are basically the same as the steps in the
+  article, but I thought it would be helpful to document commands specific to our project that
+  we
+
+> maddyA -- 2021-02-01 12:37
+- I changed app.debug = True to app.debug = False, as we are deploying our code
+  to a production server
