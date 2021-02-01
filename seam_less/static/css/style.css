@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Lobster+Two:wght@400;700&display=swap');
+
+body {
+	font-family: 'Lato', sans-serif;
+	background-color: #bcd6b4;
+    color: #005C59;
+    padding-top: 10px;
+}
+
+h1 {
+	font-family: 'Lobster Two', cursive;
+	font-weight: bold;
+}
+
+.btn {
+	background-color: #005C59;
+	color: white;
+}
+
+.btn:hover {
+	color: white;
+}
+
+.input {
+	width: 50%;
+}
+
+.footer {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: #005C59;
+	color:#dcf7d7;
+	text-align: center;
+}
+
+.top-btn {
+    background-color: #67839e;
+}
+
+.red {
+    background-color: #9e0e1d;
+}
+
+.btn-set {
+    display: inline;
+}
+
+td {
+	border: 1px solid;
+	text-align: left;
+	padding: 6px;
+}
+
+.table{
+	width: 100%
+}
